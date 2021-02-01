@@ -169,3 +169,13 @@
 		})();
 
 })();
+/*
+function loginSubmit() {
+	console.log(1);
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+	const loginBtn = document.querySelector("#loginBtn");
+	loginBtn.addEventListener("click", loginSubmit);
+});
+*/
