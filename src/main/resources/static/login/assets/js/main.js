@@ -150,7 +150,21 @@
 					// Process form.
 					// Note: Doesn't actually do anything yet (other than report back with a "thank you"),
 					// but there's enough here to piece together a working AJAX submission call that does.
-						window.setTimeout(function() {
+					const xhr = new XMLHttpRequest();
+					xhr.onreadystatechange = function() { // 요청에 대한 콜백함수
+						if(xhr.readyState === xhr.DONE) { // 요청이 완료되면 실행
+							if(xhr.status === 200 || xhr.status === 201) { // 응답 코드가 200 혹은 201
+								// $submit.
+								$form.submit();
+							} else {
+								consol.error(xhr.reponseText);
+							}
+						}
+					};
+					xhr.open('GET', '/hello'); // http 메서드와 URL설정
+					xhr.send();
+
+					window.setTimeout(function() {
 
 							// Reset form.
 								$form.reset();

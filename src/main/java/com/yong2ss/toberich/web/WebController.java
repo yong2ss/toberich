@@ -13,7 +13,7 @@ public class WebController {
 
     private PostsRepository postsRepository;
 
-    @GetMapping("/main")
+    @PostMapping("/main")
     public String main(HttpSession session, Model model) {
        // session.setAttribute("userId", "yong2ss");
        // model.addAttribute("user", "yong2ss");
