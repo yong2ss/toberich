@@ -1,7 +1,5 @@
 package com.yong2ss.toberich.object;
 
-/*
-
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,5 +98,3 @@ public class ExcelFunction {
         return resultMap;
     }
 }
-
- */

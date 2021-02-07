@@ -1,7 +1,9 @@
 package com.yong2ss.toberich.service.Draw;
 
+import com.yong2ss.toberich.object.ApiConnect;
+import com.yong2ss.toberich.object.ExcelFunction;
+import com.yong2ss.toberich.object.LottoFunction;
 
-/*
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -69,7 +71,6 @@ public class DrawService {
         HashSet result = new HashSet<>();
         Random randomNum = new Random();
         int lotto = 0;
-        */
 
 		/*이건 진짜 주석
 		int count1 = 0;
@@ -83,7 +84,7 @@ public class DrawService {
 		}
 		System.out.println("=====당첨번호 [순차 + " + data.get(0).size() + "개]" + + count1 + "번입니다 =====");
 		*/
-/*
+
         while(result.size() < 6) {
             lotto = randomNum.nextInt(count);
             result.add(all[lotto]);
@@ -117,7 +118,7 @@ public class DrawService {
         HashSet result = new HashSet<>();
         Random randomNum = new Random();
         int lotto = 0;
-*/
+
 /*		이건진짜주석  int count1 = 0;
 		int temp1 = 0;
 		int count2 = 0;
@@ -129,7 +130,7 @@ public class DrawService {
 		}
 		System.out.println("=====당첨번호 [리버스 + " + data.get(0).size() + "개]" + + count1 + "번입니다 =====");
 		*/
-/*
+
         while(result.size() < 6) {
             lotto = randomNum.nextInt(count);
             result.add(all[lotto]);
@@ -212,4 +213,3 @@ public class DrawService {
     }
 
 }
-*/
