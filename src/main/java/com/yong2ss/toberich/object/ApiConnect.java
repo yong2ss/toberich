@@ -1,11 +1,22 @@
 package com.yong2ss.toberich.object;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.GeneralSecurityException;
 
 
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.sheets.v4.Sheets;
 import com.yong2ss.toberich.util.Pathinfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -59,33 +70,5 @@ public class ApiConnect {
 
         return lottoNum;
     }
-
-    //==* 구글 스프레드시트 데이터 가져오기
-    public String lotto_google_data() {
-        String key= Pathinfo.getKey();
-
-        String apiURL = "https://docs.google.com/spreadsheets/d/" + key + "/gviz/tq?";
-        String json = "";
-        BufferedReader br;
-        try{
-            URL url = new URL(apiURL);
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-            con.setRequestMethod("GET");
-            int responseCode = con.getResponseCode();
-            if(responseCode==200) { // &#xC815;&#xC0C1; &#xD638;&#xCD9C;
-                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            } else {  // &#xC5D0;&#xB7EC; &#xBC1C;&#xC0DD;
-                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
-            }
-            json = br.readLine();
-            br.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-        }
-        return json;
-    }
-
-    //https://docs.google.com/spreadsheets/d/1LnATd9r2V_5tU3uPJs9LL8Ii93ZhsWTJflO2l0k0abw/gviz/tq?
 }
 

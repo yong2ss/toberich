@@ -23,6 +23,7 @@ public class WebRestController {
         postsRepository.save(dto.toEntity());
     }
 
+    // 메인 페이지
     @GetMapping("/")
     public String main(HttpSession session, Model model) {
         session.setAttribute("userId", "yong2ss");

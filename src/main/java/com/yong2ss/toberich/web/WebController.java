@@ -13,20 +13,11 @@ public class WebController {
 
     private PostsRepository postsRepository;
 
-    @PostMapping("/main")
+    @GetMapping("/main")
     public String main(HttpSession session, Model model) {
        // session.setAttribute("userId", "yong2ss");
        // model.addAttribute("user", "yong2ss");
 
         return "main";
     }
-
-    @GetMapping("/login")
-    public String login(HttpSession session, Model model) {
-        // session.setAttribute("userId", "yong2ss");
-        // model.addAttribute("user", "yong2ss");
-
-        return "login";
-    }
-
 }
