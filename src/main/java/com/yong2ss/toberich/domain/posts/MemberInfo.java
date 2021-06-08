@@ -14,22 +14,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
 @Getter
+@Entity
 public class MemberInfo implements UserDetails {
 
     @Id
-    @Column(name = "code")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
 
-    @Column(name = "id", unique = true)
+    @Column(unique = true)
     private String userid;
 
-    @Column(name = "password")
+    @Column
     private String password;
 
-    @Column(name = "auth")
+    @Column
     private String auth;
 
     @Builder

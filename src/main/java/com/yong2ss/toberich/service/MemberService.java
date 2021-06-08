@@ -2,7 +2,7 @@ package com.yong2ss.toberich.service;
 
 import com.yong2ss.toberich.domain.posts.MemberInfo;
 import com.yong2ss.toberich.domain.posts.MemberRepository;
-import com.yong2ss.toberich.domain.posts.Role;
+import com.yong2ss.toberich.domain.user.Role;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,9 +47,10 @@ new User()
     @Override
     public MemberInfo loadUserByUsername(String userid) throws UsernameNotFoundException {
         //반환은 원래 UserDetails지만 상속받았기때문에 MemberInfo가능
+        return null;
       
-        return memberRepository.findById(userid)
-                .orElseThrow(() -> new UsernameNotFoundException(userid));
+//        return memberRepository.findById(userid)
+//                .orElseThrow(() -> new UsernameNotFoundException(userid));
 
         //    Optional<MemberEntity> userEntityWrapper = memberRepository.findByEmail(userEmail);
     //    MemberEntity userEntity = userEntityWrapper.get();

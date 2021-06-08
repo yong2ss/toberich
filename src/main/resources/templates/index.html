@@ -12,7 +12,6 @@
 		<link rel="stylesheet" th:href="@{/login/assets/css/main.css}" />
 	</head>
 	<body class="is-preload">
-
 		<!-- Header -->
 			<header id="header">
 				<h1>To Be Rich</h1>
@@ -22,11 +21,13 @@
 
 		<!-- Signup Form -->
 			<form id="signup-form" method="post" action="/login">
-				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				<!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
 				<input type="text" name="username" id="userid" placeholder="ID" />
 				<input type="password" name="password" id="password" placeholder="password" />
 				<input type="submit" id="loginBtn" value="Sign Up" />
 			</form>
+
+			<a href="/oauth2/authorization/google" role="button">Google Login</a>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -43,6 +44,5 @@
 
 		<!-- Scripts -->
 			<script th:src="@{login/assets/js/main.js}"></script>
-
 	</body>
 </html>
