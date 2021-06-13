@@ -21,7 +21,7 @@ public class MemberController {
     // 로그인 페이지
     @GetMapping("/login")
     public String dispLogin(HttpServletRequest request, HttpServletResponse response) {
-        return "login";
+        return "main";
     }
 
     // 로그인 결과 페이지

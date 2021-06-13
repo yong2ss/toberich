@@ -35,8 +35,8 @@ dependencies {
     compile 'com.google.oauth-client:google-oauth-client-jetty:1.30.6'
     compile 'com.google.apis:google-api-services-sheets:v4-rev20201130-1.31.0'
     compile 'org.apache.poi:poi-ooxml:3.15'
+    compile("org.mariadb.jdbc:mariadb-java-client")
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
-    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
     compile group: 'com.zaxxer', name: 'HikariCP', version: '3.3.0'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
