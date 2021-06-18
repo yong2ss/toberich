@@ -30,12 +30,12 @@ public class MemberController {
         return "main";
     }
 
-    // 로그아웃
-    @GetMapping("/logout")
+    // 로그아웃 - spring security가 기본으로 제공
+    /*@GetMapping("/logout")
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/login";
-    }
+    }*/
 
     // 로그아웃 결과 페이지
     @GetMapping("/logout/result")

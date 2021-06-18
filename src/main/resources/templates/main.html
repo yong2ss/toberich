@@ -17,28 +17,62 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img th:src="@{/images/avatar.jpg}" alt="" /></a>
-					<h1><strong>I am Strata</strong>, a super simple<br />
-					responsive site template freebie<br />
-					crafted by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+						<h1><strong th:text="${userName + '님'}"><strong></h1>
+						<h1>ToBeRich(Lotto)</h1>
+						<h1>Public Version</h1>
+						<h1>For Acquaintance</h1>
+						<h1>created by <a href="https://yong2ss.me">Yong2ss</a></h1>
 				</div>
 			</header>
 
 		<!-- Main -->
 			<div id="main">
-
 				<!-- One -->
 					<section id="one">
 						<header class="major">
-							<h2>Ipsum lorem dolor aliquam ante commodo<br />
-							magna sed accumsan arcu neque.</h2>
+							<h2>로또 번호 추출<br />
+							(1일 1회 사용가능)</h2>
 						</header>
-						<p>Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae lobortis tortor primis integer massa adipiscing id nisi accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque cubilia.</p>
-						<ul class="actions">
-							<li><a href="#" class="button">Learn More</a></li>
+						<p>관련 내용 설명</p>
+						<div class="table-wrapper">
+							<table style="margin: 0 0 1em 0;">
+								<thead>
+								<tr>
+									<th>순서</th>
+									<th>당첨번호</th>
+								</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>첫번째 순서</td>
+										<td colspan="2">1,5,7,8,9,45</td>
+									</tr>
+									<tr>
+										<td>두번째 순서</td>
+										<td colspan="2">1,5,7,8,9,10</td>
+									</tr>
+									<tr>
+										<td>세번째 순서</td>
+										<td colspan="2">1,5,7,8,9,13</td>
+									</tr>
+									<tr>
+										<td>네번째 순서</td>
+										<td colspan="2">1,5,7,8,9,18</td>
+									</tr>
+									<tr>
+										<td>다섯번째 순서</td>
+										<td colspan="2">1,5,7,8,9,32</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<ul class="actions" style="justify-content: flex-end">
+							<li><a href="#" class="button">번호가져오기</a></li>
 						</ul>
 					</section>
 `
 				<!-- Two -->
+				<!--
 					<section id="two">
 						<h2>Recent Work</h2>
 						<div class="row">
@@ -77,11 +111,11 @@
 							<li><a href="#" class="button">Full Portfolio</a></li>
 						</ul>
 					</section>
-
+-->
 				<!-- Three -->
 					<section id="three">
 						<h2>Get In Touch</h2>
-						<p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
+						<p>문의 내용이 있을 경우 남겨주세요</p>
 						<div class="row">
 							<div class="col-8 col-12-small">
 								<form method="post" action="#">
@@ -99,17 +133,16 @@
 								<ul class="labeled-icons">
 									<li>
 										<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-										1234 Somewhere Rd.<br />
-										Nashville, TN 00000<br />
-										United States
+										서울시<br />
+										광진구 자양동
 									</li>
 									<li>
 										<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-										000-000-0000
+										010-3826-8211
 									</li>
 									<li>
 										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="#">hello@untitled.tld</a>
+										<a href="#">korea92co@gmail.com</a>
 									</li>
 								</ul>
 							</div>
@@ -117,7 +150,6 @@
 					</section>
 
 				<!-- Four -->
-				<!--
 					<section id="four">
 						<h2>Elements</h2>
 
@@ -432,7 +464,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						</section>
 
 					</section>
-				-->
 
 			</div>
 
@@ -446,7 +477,8 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
-						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li><a href="/logout">LOGOUT</a></li>
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 				</div>
 			</footer>

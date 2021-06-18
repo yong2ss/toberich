@@ -27,9 +27,10 @@ public class WebController {
     private final HttpSession httpSession;
 
     @GetMapping("/main")
-    public String main(HttpSession session, Model model) {
+    public String main(HttpSession session, Model model, @LoginUser SessionUser user) {
        // session.setAttribute("userId", "yong2ss");
        // model.addAttribute("user", "yong2ss");
+        model.addAttribute("userName", user.getName());
 
         return "main";
     }
@@ -40,6 +41,7 @@ public class WebController {
 
         if(user != null) {
             model.addAttribute("userName", user.getName());
+            return "redirect:/main";
         }
 
         return "index";

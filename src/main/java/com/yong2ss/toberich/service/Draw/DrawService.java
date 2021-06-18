@@ -3,6 +3,7 @@ package com.yong2ss.toberich.service.Draw;
 import com.yong2ss.toberich.object.ApiConnect;
 import com.yong2ss.toberich.object.ExcelFunction;
 import com.yong2ss.toberich.object.LottoFunction;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+@Service
 public class DrawService {
 
     public void drawStart() {
