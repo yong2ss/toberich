@@ -1,12 +1,14 @@
 package com.yong2ss.toberich.domain.user;
 
 import com.yong2ss.toberich.domain.BaseTimeEntity;
+import com.yong2ss.toberich.domain.question.Question;
 import com.yong2ss.toberich.domain.user.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -29,6 +31,9 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Question> questions;
 
     @Builder
     public User(String name, String email, String picture, Role role) {

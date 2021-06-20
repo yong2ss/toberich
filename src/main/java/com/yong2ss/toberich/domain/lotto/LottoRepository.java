@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface LottoRepository extends JpaRepository<User, Long> {
+public interface LottoRepository extends JpaRepository<Lotto, Long> {
     Optional<Lotto> findByRound(int round);   //회차 검색
 }

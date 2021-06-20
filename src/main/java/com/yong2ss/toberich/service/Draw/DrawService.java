@@ -1,8 +1,12 @@
 package com.yong2ss.toberich.service.Draw;
 
+import com.yong2ss.toberich.domain.draw.Draw;
+import com.yong2ss.toberich.domain.draw.DrawRepository;
+import com.yong2ss.toberich.domain.lotto.LottoRepository;
 import com.yong2ss.toberich.object.ApiConnect;
 import com.yong2ss.toberich.object.ExcelFunction;
 import com.yong2ss.toberich.object.LottoFunction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,7 +21,20 @@ import java.util.Scanner;
 @Service
 public class DrawService {
 
-    public void drawStart() {
+    @Autowired
+    private DrawRepository drawRepository;
+
+    public Draw save() {
+        //TODO 로또 추출 DRAW
+        Draw draw = new Draw();
+
+        drawRepository.save(draw);
+        return draw;
+    }
+
+
+    //
+    private static void drawStart() {
         String select = "";
         System.out.println("a : alpha 로또추출 / b : beta 로또추출");
         Scanner scan = new Scanner(System.in);
