@@ -18,7 +18,7 @@ public class LottoService {
     private LottoRepository lottoRepository;
 
     public List<Lotto> findAll() {
-        return null;
+        return lottoRepository.findAll();
     }
 
     public Lotto findOne(int round) {
@@ -27,5 +27,28 @@ public class LottoService {
 
     public Lotto save(Lotto lotto) {
         return lottoRepository.save(lotto);
+    }
+
+    //초기 데이터 삽입
+    public Lotto migration(int i) throws Exception {
+
+        int [] lottos = ApiConnect.lotto_json(i);
+
+        if(lottos.length == 0) {
+            throw new Exception();
+        }
+
+        Lotto lotto = Lotto.builder()
+                        .round(i)
+                        .draw1(lottos[0])
+                        .draw2(lottos[1])
+                        .draw3(lottos[2])
+                        .draw4(lottos[3])
+                        .draw5(lottos[4])
+                        .draw6(lottos[5])
+                        .bonus(lottos[6])
+                        .build();
+
+        return lotto;
     }
 }

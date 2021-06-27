@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public class LottoFunction {
 
-    public Integer [] beta (Integer [] ans) {
+    public static Integer [] beta (Integer [] ans) {
 
         if(ans == null || ans.length != 7) {
             return null;
@@ -48,7 +48,7 @@ public class LottoFunction {
 	(8. 6개숫자합이 90~190                      v sum
 	(9. 저고차 25~42
 	*/
-    public Boolean validCheck (ArrayList<Integer> temp) {
+    public static Boolean validCheck (ArrayList<Integer> temp) {
         Collections.sort(temp);
 
         //int [] prelottoNum = new ApiConnect().lotto_json(901);

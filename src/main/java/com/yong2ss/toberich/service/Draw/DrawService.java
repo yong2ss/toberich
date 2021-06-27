@@ -2,36 +2,89 @@ package com.yong2ss.toberich.service.Draw;
 
 import com.yong2ss.toberich.domain.draw.Draw;
 import com.yong2ss.toberich.domain.draw.DrawRepository;
+import com.yong2ss.toberich.domain.draw.DrawStatis;
+import com.yong2ss.toberich.domain.draw.DrawStatisRepository;
+import com.yong2ss.toberich.domain.lotto.Lotto;
 import com.yong2ss.toberich.domain.lotto.LottoRepository;
 import com.yong2ss.toberich.object.ApiConnect;
+import com.yong2ss.toberich.object.CmFuntion;
 import com.yong2ss.toberich.object.ExcelFunction;
 import com.yong2ss.toberich.object.LottoFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class DrawService {
 
+    private static final List<Lotto> lottos = new ArrayList<>();
+    List<Integer> allLotto = new ArrayList<>();
+
+    @Autowired
+    private LottoRepository lottoRepository;
+
     @Autowired
     private DrawRepository drawRepository;
 
-    public Draw save() {
-        //TODO 로또 추출 DRAW
-        Draw draw = new Draw();
+    @Autowired
+    private DrawStatisRepository drawStatisRepository;
 
-        drawRepository.save(draw);
+    private List<DrawStatis> getDrawsByNum () {
+        return drawStatisRepository.findStatisByNum();
+    }
+
+    public Draw save() {
+        Draw draw = this.doDraw();
+        //TODO 보고 주석지워서 적용하기
+        //drawRepository.save(draw);
         return draw;
     }
 
+    private Draw doDraw() {
+        //TODO 로또 로직
+        //랜덤으로 6개 뽑기
+
+        List<DrawStatis> statises = this.getDrawsByNum();
+
+        //int sum = statises.stream().reduce(0, (a, b) -> a.getCnt() + b.getCnt());
+        for(DrawStatis statis : statises) {
+            this.addDrawsStatis(allLotto, statis.getLottoNum(), statis.getCnt());
+        }
+
+        HashSet<Integer> drawSet = this.drawSet(allLotto.size());
+        List<Integer> targetList = new ArrayList<>(drawSet);
+        Collections.sort(targetList);
+
+        Draw draw = Draw.builder()
+                        .draw1(targetList.get(0))
+                        .draw2(targetList.get(1))
+                        .draw3(targetList.get(2))
+                        .draw4(targetList.get(3))
+                        .draw5(targetList.get(4))
+                        .draw6(targetList.get(5))
+                        .drawDate(CmFuntion.getToday8())
+                        .build();
+
+        return draw;
+    }
+
+    private HashSet<Integer> drawSet (int size) {
+        HashSet<Integer> temp = new HashSet<>();
+        int tempNum = 0;
+        while(temp.size() < 6) {
+            tempNum = ThreadLocalRandom.current().nextInt(size);
+            temp.add(allLotto.get(tempNum));
+        }
+        return temp;
+    }
+
+    private void addDrawsStatis (List<Integer> allLotto, int number, int cnt) {
+        for(int i = 0; i < cnt ;i++) {
+            allLotto.add(number);
+        }
+    }
 
     //
     private static void drawStart() {
@@ -171,7 +224,7 @@ public class DrawService {
 
         for(int i = 0; i < dataSize; i++) {
             temp = data.get(i);
-            for(int k=0;k<temp.size();k++) {
+            for(int k=0; k < temp.size(); k++) {
                 count++;
                 all[count] = (int) temp.get(k);
                 a.add(all[count]);

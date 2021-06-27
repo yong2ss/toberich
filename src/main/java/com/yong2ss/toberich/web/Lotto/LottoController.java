@@ -46,4 +46,15 @@ public class LottoController {
         return ResponseEntity.created(location).build();
     }
 
+    @GetMapping("/lottos/migration")
+    @Deprecated
+    public void migrationLotto() {
+        try {
+            for(int i = 1; i < 1000 ;i++) {
+//                Lotto lotto = lottoService.migration(i);
+//                Lotto savedLotto = lottoService.save(lotto);
+            }
+        } catch (Exception e){}
+    }
+
 }

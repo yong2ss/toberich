@@ -1,6 +1,7 @@
 package com.yong2ss.toberich.domain.user;
 
 import com.yong2ss.toberich.domain.BaseTimeEntity;
+import com.yong2ss.toberich.domain.draw.Draw;
 import com.yong2ss.toberich.domain.question.Question;
 import com.yong2ss.toberich.domain.user.Role;
 import lombok.Builder;
@@ -34,6 +35,9 @@ public class User extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "user")
     private List<Question> questions;
+
+    @OneToMany(mappedBy = "user")
+    private List<Draw> draws;
 
     @Builder
     public User(String name, String email, String picture, Role role) {

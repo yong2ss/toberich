@@ -1,6 +1,8 @@
 package com.yong2ss.toberich.domain.draw;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yong2ss.toberich.domain.BaseTimeEntity;
+import com.yong2ss.toberich.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +41,11 @@ public class Draw extends BaseTimeEntity {
 
     @Column(nullable = false)
     private int draw6;
+
+    //User : Draw => 1 : (0~N)
+    @ManyToOne(fetch = FetchType.LAZY)  //지연 로딩
+    @JsonIgnore //json으로 외부에 표시할 때 해당 어노테이션 값은 노출하지 않음
+    private User user;
 
     @Builder
     public Draw(String drawDate, int seq, int draw1, int draw2, int draw3, int draw4, int draw5, int draw6) {

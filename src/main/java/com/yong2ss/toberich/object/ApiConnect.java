@@ -26,9 +26,9 @@ import org.json.simple.parser.JSONParser;
 public class ApiConnect {
 
     //==* 지난 회차 당첨번호 가져오기
-    public String lotto_select(int round) {
-        //https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=861
-        String apiURL = "https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=" + round;
+    public static String lotto_select(int round) {
+        //"https://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=" + round;
+        String apiURL = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=" + round;
         String json = "";
         BufferedReader br;
         try{
@@ -50,7 +50,7 @@ public class ApiConnect {
         return json;
     }
 
-    public int [] lotto_json (int round) {
+    public static int [] lotto_json (int round) {
         String json = lotto_select(round);
 
         int [] lottoNum = new int[7];
