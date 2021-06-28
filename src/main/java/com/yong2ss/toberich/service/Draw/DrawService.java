@@ -32,7 +32,24 @@ public class DrawService {
     private DrawStatisRepository drawStatisRepository;
 
     private List<DrawStatis> getDrawsByNum () {
-        return drawStatisRepository.findStatisByNum();
+        List<DrawStatis> draw = new ArrayList<>();
+
+        List<DrawStatis> temp1 = drawStatisRepository.findStatisByNum1();
+        List<DrawStatis> temp2 = drawStatisRepository.findStatisByNum2();
+        List<DrawStatis> temp3 = drawStatisRepository.findStatisByNum3();
+        List<DrawStatis> temp4 = drawStatisRepository.findStatisByNum4();
+        List<DrawStatis> temp5 = drawStatisRepository.findStatisByNum5();
+        List<DrawStatis> temp6 = drawStatisRepository.findStatisByNum6();
+
+        for(int i = 1; i < 46; i++) {
+            int sum = CmFuntion.drawStatisNVL(temp1.get(i)) + CmFuntion.drawStatisNVL(temp2.get(i))
+                    + CmFuntion.drawStatisNVL(temp3.get(i)) + CmFuntion.drawStatisNVL(temp4.get(i))
+                    + CmFuntion.drawStatisNVL(temp5.get(i)) + CmFuntion.drawStatisNVL(temp6.get(i));
+
+            draw.add(new DrawStatis(i, sum));
+        }
+
+        return draw;
     }
 
     public Draw save() {
@@ -53,9 +70,18 @@ public class DrawService {
             this.addDrawsStatis(allLotto, statis.getLottoNum(), statis.getCnt());
         }
 
-        HashSet<Integer> drawSet = this.drawSet(allLotto.size());
-        List<Integer> targetList = new ArrayList<>(drawSet);
-        Collections.sort(targetList);
+        ArrayList<Integer> targetList = new ArrayList<>();
+        boolean valid = true;
+
+        while(valid) {
+            HashSet<Integer> drawSet = this.drawSet(allLotto.size());
+            targetList = new ArrayList<>(drawSet);
+            Collections.sort(targetList);
+
+            if(LottoFunction.validCheck(targetList)) {
+                valid = false;
+            }
+        }
 
         Draw draw = Draw.builder()
                         .draw1(targetList.get(0))
