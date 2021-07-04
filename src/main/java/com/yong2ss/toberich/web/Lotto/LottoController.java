@@ -3,6 +3,7 @@ package com.yong2ss.toberich.web.Lotto;
 import com.yong2ss.toberich.domain.lotto.Lotto;
 import com.yong2ss.toberich.object.SpreadSheetApi;
 import com.yong2ss.toberich.service.Lotto.LottoService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,14 +47,14 @@ public class LottoController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("/lottos/migration")
+    @GetMapping("/lottos/migration/{round}")
     @Deprecated
-    public void migrationLotto() {
+    public void migrationLotto(@PathVariable int round) {
         try {
-            for(int i = 1; i < 1000 ;i++) {
-//                Lotto lotto = lottoService.migration(i);
-//                Lotto savedLotto = lottoService.save(lotto);
-            }
+            Lotto lotto = lottoService.migration(round);
+            Lotto savedLotto = lottoService.save(lotto);
+            //for(int i = 1; i < 1000 ;i++) {
+            //}
         } catch (Exception e){}
     }
 
