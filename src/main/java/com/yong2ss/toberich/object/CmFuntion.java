@@ -1,6 +1,6 @@
 package com.yong2ss.toberich.object;
 
-import com.yong2ss.toberich.domain.draw.DrawStatis;
+import com.yong2ss.toberich.dto.draw.CustomDrawDto;
 
 import java.time.LocalDate;
 
@@ -10,7 +10,7 @@ public class CmFuntion {
         return localDate.toString().replace("-", "");
     }
 
-    public static int drawStatisNVL(DrawStatis vo) {
+    public static int CustomDrawNVL(CustomDrawDto vo) {
         try {
             if(vo == null) {
                 return 0;

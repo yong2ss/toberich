@@ -21,7 +21,7 @@ public class DrawController {
     @Autowired
     private DrawService drawService;
 
-    @PostMapping("/draws")
+    @GetMapping("/draws")
     public Draw createDraw() {
         return drawService.save();
     }
