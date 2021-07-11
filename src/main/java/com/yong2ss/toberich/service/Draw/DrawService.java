@@ -1,10 +1,14 @@
 package com.yong2ss.toberich.service.Draw;
 
+import com.yong2ss.toberich.config.auth.LoginUser;
+import com.yong2ss.toberich.config.auth.dto.SessionUser;
 import com.yong2ss.toberich.domain.draw.Draw;
 import com.yong2ss.toberich.domain.draw.DrawRepository;
 import com.yong2ss.toberich.domain.draw.DrawStatisRepository;
 import com.yong2ss.toberich.domain.lotto.Lotto;
 import com.yong2ss.toberich.domain.lotto.LottoRepository;
+import com.yong2ss.toberich.domain.user.User;
+import com.yong2ss.toberich.domain.user.UserRepository;
 import com.yong2ss.toberich.dto.draw.CustomDrawDto;
 import com.yong2ss.toberich.object.ApiConnect;
 import com.yong2ss.toberich.object.CmFuntion;
@@ -13,6 +17,7 @@ import com.yong2ss.toberich.object.LottoFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -36,6 +41,10 @@ public class DrawService {
 
     @Autowired
     private DrawStatisRepository drawStatisRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
 
     private List<CustomDrawDto> callBackObject(List<Object[]> list) {
         List<CustomDrawDto> callBackValues = new ArrayList<>();
@@ -74,16 +83,28 @@ public class DrawService {
                 lottos.put(temp.getLottoNum(), lottos.get(temp.getLottoNum()) + temp.getCnt());
             }
         } catch (Exception e) {
-            System.out.println(tempList.size() + "@@@@@@@");
         }
     }
 
     //==* 개인별 로또 추첨 및 저장
-    public Draw save() {
+    public Draw save(SessionUser user) {
+        if(this.doDrawCount(user) >= 5) {
+           return null;
+        }
+
         Draw draw = this.doDraw();
         //TODO 보고 주석지워서 적용하기
-        //drawRepository.save(draw);
+        User draw_user = userRepository.findByEmail(user.getEmail())
+                .map(entity -> entity.update(user.getName(), user.getPicture()))
+                .orElse(null);
+        draw.setUser(draw_user);
+        drawRepository.save(draw);
         return draw;
+    }
+
+    //==* 개인별 당일 로또 추첨 횟수
+    private long doDrawCount(SessionUser user) {
+        return drawRepository.countAllByDrawdate(CmFuntion.getToday8());
     }
 
     //==* 개인별 로또 번호 추첨
@@ -110,6 +131,7 @@ public class DrawService {
             }
         }
 
+        //.email(user.getEmail())
         Draw draw = Draw.builder()
                         .draw1(targetList.get(0))
                         .draw2(targetList.get(1))
@@ -117,7 +139,7 @@ public class DrawService {
                         .draw4(targetList.get(3))
                         .draw5(targetList.get(4))
                         .draw6(targetList.get(5))
-                        .drawDate(CmFuntion.getToday8())
+                        .drawdate(CmFuntion.getToday8())
                         .build();
 
         return draw;

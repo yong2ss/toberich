@@ -6,10 +6,12 @@ import com.yong2ss.toberich.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Draw extends BaseTimeEntity {
@@ -19,7 +21,7 @@ public class Draw extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String drawDate;
+    private String drawdate;
 
     @Column(nullable = false)
     private int seq;
@@ -48,8 +50,8 @@ public class Draw extends BaseTimeEntity {
     private User user;
 
     @Builder
-    public Draw(String drawDate, int seq, int draw1, int draw2, int draw3, int draw4, int draw5, int draw6) {
-        this.drawDate = drawDate;
+    public Draw(String drawdate, int seq, int draw1, int draw2, int draw3, int draw4, int draw5, int draw6) {
+        this.drawdate = drawdate;
         this.seq = seq;
         this.draw1 = draw1;
         this.draw2 = draw2;

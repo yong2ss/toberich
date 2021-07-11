@@ -8,4 +8,5 @@ import java.util.List;
 
 
 public interface DrawRepository extends JpaRepository<Draw, Long> {
+    long countAllByDrawdate(String date);
 }

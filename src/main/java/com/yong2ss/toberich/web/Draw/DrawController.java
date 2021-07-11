@@ -1,7 +1,10 @@
 package com.yong2ss.toberich.web.Draw;
 
+import com.yong2ss.toberich.config.auth.LoginUser;
+import com.yong2ss.toberich.config.auth.dto.SessionUser;
 import com.yong2ss.toberich.domain.draw.Draw;
 import com.yong2ss.toberich.domain.lotto.Lotto;
+import com.yong2ss.toberich.domain.user.User;
 import com.yong2ss.toberich.object.SpreadSheetApi;
 import com.yong2ss.toberich.service.Draw.DrawService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +25,8 @@ public class DrawController {
     private DrawService drawService;
 
     @GetMapping("/draws")
-    public Draw createDraw() {
-        return drawService.save();
+    public Draw createDraw(@LoginUser SessionUser user) {
+        return drawService.save(user);
     }
 
     @GetMapping("/draw_ajax")
